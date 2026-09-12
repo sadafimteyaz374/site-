@@ -16,7 +16,7 @@
 * **Backend:** Node.js, WebServer/Signaling Server (Hosted on Render)
 * **AI & Machine Learning:** Hugging Face Inference API (Whisper Model for Audio/Video-to-Text Transcription)
 * **Integrations & Security:** Google OAuth 2.0 & Gmail REST API for secure direct inbox scanning
-* **Deployment & Routing:** Vercel (SPA Routing with custom `vercel.json` rules)
+* **Deployment & Routing:** Vercel & Render
 
 ---
 
