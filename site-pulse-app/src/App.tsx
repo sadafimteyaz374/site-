@@ -162,45 +162,45 @@ export default function App() {
   };
 
   const handleProcessMedia = async () => {
-  if (!mediaFile) return;
-  setLoading(true);
-  setError(null);
+    if (!mediaFile) return;
+    setLoading(true);
+    setError(null);
 
-  const hfToken = import.meta.env.VITE_HF_API_TOKEN;
+    const hfToken = import.meta.env.VITE_HF_API_TOKEN;
 
-  if (!hfToken) {
-    setError("VITE_HF_API_TOKEN is missing in your .env file!");
-    setLoading(false);
-    return;
-  }
-
-  try {
-    let audioBlob: Blob = mediaFile;
-
-    if (mediaFile.type.startsWith('video/')) {
-      setMediaStatus('Extracting audio track from video...');
-      audioBlob = await extractAudioFromVideo(mediaFile);
+    if (!hfToken) {
+      setError("VITE_HF_API_TOKEN is missing in your .env file!");
+      setLoading(false);
+      return;
     }
 
-    setMediaStatus('Transcribing via Hugging Face...');
-    const transcriptText = await transcribeAudio(audioBlob, hfToken);
+    try {
+      let audioBlob: Blob = mediaFile;
 
-    setMediaResult({
-      summary: `Successfully transcribed media file [${mediaFile.name}] using Whisper AI.`,
-      transcript: transcriptText,
-      keyInsights: [
-        "Real audio-to-text extraction completed.",
-        "Check full transcript below for exact spoken phrases."
-      ]
-    });
-  } catch (err: any) {
-    console.error("HF Audio Processing Error:", err);
-    setError(err.message || "Failed to process audio file with Hugging Face.");
-  } finally {
-    setLoading(false);
-    setMediaStatus(null);
-  }
-};
+      if (mediaFile.type.startsWith('video/')) {
+        setMediaStatus('Extracting audio track from video...');
+        audioBlob = await extractAudioFromVideo(mediaFile);
+      }
+
+      setMediaStatus('Transcribing via Hugging Face...');
+      const transcriptText = await transcribeAudio(audioBlob, hfToken);
+
+      setMediaResult({
+        summary: `Successfully transcribed media file [${mediaFile.name}] using Whisper AI.`,
+        transcript: transcriptText,
+        keyInsights: [
+          "Real audio-to-text extraction completed.",
+          "Check full transcript below for exact spoken phrases."
+        ]
+      });
+    } catch (err: any) {
+      console.error("HF Audio Processing Error:", err);
+      setError(err.message || "Failed to process audio file with Hugging Face.");
+    } finally {
+      setLoading(false);
+      setMediaStatus(null);
+    }
+  };
 
   const filteredActionItems = result?.actionItems?.filter((item: any) => {
     if (activeFilter === 'ALL') return true;
@@ -319,6 +319,12 @@ export default function App() {
               <button onClick={handleProcessMedia} disabled={loading || !mediaFile} style={actionBtnStyle(loading || !mediaFile)}>
                 {loading ? 'Transcribing via Hugging Face...' : '🎙️ Extract Media Transcript'}
               </button>
+
+              {mediaStatus && (
+                <p style={{ fontSize: '12px', color: '#0284c7', marginTop: '8px', textAlign: 'center', fontWeight: '500' }}>
+                  ⏳ {mediaStatus}
+                </p>
+              )}
             </div>
           )}
 
