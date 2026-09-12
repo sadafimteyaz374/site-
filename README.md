@@ -2,7 +2,6 @@
 ### Autonomous Multi-Source Communication Triage & Risk Intelligence Engine
 
 > **Live Demo:** [https://site-nine-navy-23.vercel.app](https://site-nine-navy-23.vercel.app)  
-> **Backend Service:** [https://site-rtvd.onrender.com](https://site-rtvd.onrender.com)
 
 ---
 
