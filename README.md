@@ -33,36 +33,7 @@
 
 ---
 
-## ⚙️ Local Development & Setup
-
-To run this project locally, follow these steps:
-
-### 1. Clone the repository
-\`\`\`bash
-git clone https://github.com/your-username/site-pulse-ai.git
-cd site-pulse-ai/site-pulse-app
-\`\`\`
-
-### 2. Install dependencies
-\`\`\`bash
-npm install
-\`\`\`
-
-### 3. Configure Environment Variables
-Create a `.env` file in the root of your frontend directory and add your API tokens:
-\`\`\`env
-VITE_HF_API_TOKEN=your_huggingface_inference_api_token
-VITE_SIGNALING_URL=https://site-rtvd.onrender.com
-\`\`\`
-
-### 4. Run the development server
-\`\`\`bash
-npm run dev
-\`\`\`
-
----
-
-## 💡 Architectural Highlights for Recruiters
+## 💡 Architectural Highlights
 * **Full-Stack Integration:** Seamlessly bridges a high-performance React frontend with a scalable Node.js backend on Render.
 * **Complex Media Handling:** Handles browser-side binary audio extraction from video files before dispatching to external ML models.
 * **Production-Ready Security:** Implements strict OAuth scopes and secure credential validation to prevent origin mismatch errors.
